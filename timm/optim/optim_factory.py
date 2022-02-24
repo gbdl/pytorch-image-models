@@ -136,9 +136,9 @@ def create_optimizer_v2(
         optimizer = SGDP(parameters, momentum=momentum, nesterov=True, **opt_args)
 
     # [B]BI
-    elif opt_lower == 'BI':
+    elif opt_lower == 'bi':
         optimizer = BI(parameters, **opt_args)
-    elif opt_lower == 'BBI':
+    elif opt_lower == 'bbi':
         optimizer = BBI(parameters, **opt_args)
 
     # adaptive
