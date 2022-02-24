@@ -709,7 +709,10 @@ def train_one_epoch(
                 dispatch_clip_grad(
                     model_parameters(model, exclude_head='agc' in args.clip_mode),
                     value=args.clip_grad, mode=args.clip_mode)
-            optimizer.step()
+            
+            def closure():
+                return loss
+            optimizer.step(closure)
 
         if model_ema is not None:
             model_ema.update(model)
