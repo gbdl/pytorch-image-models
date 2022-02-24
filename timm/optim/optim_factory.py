@@ -20,6 +20,7 @@ from .nvnovograd import NvNovoGrad
 from .radam import RAdam
 from .rmsprop_tf import RMSpropTF
 from .sgdp import SGDP
+from .inflation import BBI, BI
 
 try:
     from apex.optimizers import FusedNovoGrad, FusedAdam, FusedLAMB, FusedSGD
@@ -133,6 +134,12 @@ def create_optimizer_v2(
         optimizer = optim.SGD(parameters, momentum=momentum, nesterov=False, **opt_args)
     elif opt_lower == 'sgdp':
         optimizer = SGDP(parameters, momentum=momentum, nesterov=True, **opt_args)
+
+    # [B]BI
+    elif opt_lower == 'BI':
+        optimizer = BI(parameters, **opt_args)
+    elif opt_lower == 'BBI':
+        optimizer = BBI(parameters, **opt_args)
 
     # adaptive
     elif opt_lower == 'adam':
