@@ -74,7 +74,10 @@ class BBI(Optimizer):
                     d_p = p.grad.data
                     #Initialize in the direction of the gradient, with magnitude related to deltaE
                     if "momentum_buffer" not in param_state:
-                        buf = param_state["momentum_buffer"] = -(d_p/torch.norm(d_p))*torch.sqrt(torch.tensor( ((self.init_energy**2)/self.initV) - self.initV ))
+                        if torch.norm(d_p)< eps1:
+                            buf = param_state["momentum_buffer"] = torch.zeros_like(d_p)
+                        else:
+                            buf = param_state["momentum_buffer"] = -(d_p/(torch.norm(d_p)+eps2))*torch.sqrt(torch.tensor( ((self.init_energy**2)/self.initV) - self.initV ))
                     else:
                         buf = param_state["momentum_buffer"]
 
@@ -215,7 +218,10 @@ class BI(Optimizer):
                     d_p = p.grad.data
                     #Initialize in the direction of the gradient, with magnitude related to deltaE
                     if "momentum_buffer" not in param_state:
-                        buf = param_state["momentum_buffer"] = -(d_p/torch.norm(d_p))*torch.sqrt(torch.tensor( ((self.init_energy**2)/self.initV) - self.initV ))
+                        if torch.norm(d_p)< eps1:
+                            buf = param_state["momentum_buffer"] = torch.zeros_like(d_p)
+                        else:
+                            buf = param_state["momentum_buffer"] = -(d_p/(torch.norm(d_p)+eps2))*torch.sqrt(torch.tensor( ((self.init_energy**2)/self.initV) - self.initV ))
                     else:
                         buf = param_state["momentum_buffer"]
 
