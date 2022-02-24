@@ -137,8 +137,10 @@ def create_optimizer_v2(
 
     # [B]BI
     elif opt_lower == 'bi':
+        opt_args.pop('weight_decay', None)
         optimizer = BI(parameters, **opt_args)
     elif opt_lower == 'bbi':
+        opt_args.pop('weight_decay', None)
         optimizer = BBI(parameters, **opt_args)
 
     # adaptive
