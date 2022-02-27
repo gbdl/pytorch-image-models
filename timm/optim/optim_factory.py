@@ -136,11 +136,14 @@ def create_optimizer_v2(
         optimizer = SGDP(parameters, momentum=momentum, nesterov=True, **opt_args)
 
     # [B]BI
+    # eps -> deltEn for these optimizers, with the default being 0.0
     elif opt_lower == 'bi':
         opt_args.pop('weight_decay', None)
+        opt_args['deltaEn'] =  opt_args.pop('eps', 0.0)
         optimizer = BI(parameters, **opt_args)
     elif opt_lower == 'bbi':
         opt_args.pop('weight_decay', None)
+        opt_args['deltaEn'] =  opt_args.pop('eps', 0.0)
         optimizer = BBI(parameters, **opt_args)
 
     # adaptive
