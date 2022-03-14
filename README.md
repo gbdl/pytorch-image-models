@@ -5,7 +5,7 @@ This fork includes the [(B)BI optimizers](https://arxiv.org/abs/2201.11137).
 Some comments:
 
 - So far, the only tunable hyperparameters are the learning rate and `deltaEn`. The latter is specified as `--opt-eps VALUE`, where `VALUE` is the required value of `deltaEn` (default 0.0).
-- The difference between BI and BBI is that the latter also includes bounces, with fixed hyperparameters $T_0 = 1000$, $T_1 = 3000$, $N_b = 1$. 
+- The difference between BI and BBI is that the latter also includes bounces, with fixed hyperparameters $T_0 = 10$, $T_1 = 30$, $N_b = 5$. 
 - Learning rate scheduling is not currently supported for the B(BI) optimizers, so please train with the option `--sched None`
 - Currently there is not support for the new optimizers in mixed precision, so please train without the `--amp` option.
 

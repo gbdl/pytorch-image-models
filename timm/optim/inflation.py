@@ -15,7 +15,7 @@ class BBI(Optimizer):
         consEn (bool): if True enforces energy conservation at every step
         n_fixed_bounces (integer): number of bounces every T_0 iterations (N_b in the paper) 
     """
-    def __init__(self, params, lr=required, eps1=1e-10, eps2 = 1e-40, v0=0, threshold0 = 1000, threshold = 3000, deltaEn = 0.0, consEn = True, n_fixed_bounces = 1):
+    def __init__(self, params, lr=required, eps1=1e-10, eps2 = 1e-40, v0=0, threshold0 = 10, threshold = 30, deltaEn = 0.0, consEn = True, n_fixed_bounces = 5):
             
             defaults = dict(lr=lr, eps1=eps1, eps2=eps2, v0=v0, threshold = threshold, threshold0 = threshold0, deltaEn = deltaEn, consEn = consEn, n_fixed_bounces = n_fixed_bounces)
             self.energy = None
